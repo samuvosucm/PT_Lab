@@ -1,7 +1,11 @@
-﻿namespace CalculatorLibrary.Logic
+﻿using CalculatorLibrary.Data;
+
+namespace CalculatorLibrary.Logic
 {
     public class Calculator
     {
+        DataLayerAbstract c = DataLayerAbstract.CreateLinq2SQL();
+
         public int Add(int x, int y)
         {
             return x + y;
