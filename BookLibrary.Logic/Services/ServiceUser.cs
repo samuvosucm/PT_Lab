@@ -1,10 +1,5 @@
 ﻿using BookLibrary.Data.Interfaces;
 using BookLibrary.Logic.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BookLibrary.Logic.Services
 {
@@ -17,19 +12,38 @@ namespace BookLibrary.Logic.Services
             this.repository = repository;
         }
 
-        public void AddUser(IUser user)
+        public void AddUser(ILogicUser user)
         {
-            repository.AddUser(user);
+            repository.AddUser(new LogicToDataUser(user));
         }
 
-        public IUser? GetUser(string DNI)
+        public IEnumerable<ILogicUser> GetAllUsers()
         {
-            return repository.GetUser(DNI);
+            return repository.GetAllUsers().Select(u => new DataToLogicUser(u)).ToList();
         }
 
-        public void RemoveUser(IUser user)
+        private class LogicToDataUser : IUser
         {
-            repository.RemoveUser(user);
+            public string DNI { get; }
+            public string Name { get; }
+
+            public LogicToDataUser(ILogicUser logicUser)
+            {
+                DNI = logicUser.DNI;
+                Name = logicUser.Name;
+            }
+        }
+
+        private class DataToLogicUser : ILogicUser
+        {
+            public string DNI { get; }
+            public string Name { get; }
+
+            public DataToLogicUser(IUser user)
+            {
+                DNI = user.DNI;
+                Name = user.Name;
+            }
         }
     }
 }

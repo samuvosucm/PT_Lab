@@ -19,7 +19,7 @@ namespace BookLibrary.Data.Interfaces
         void RemoveFromCatalog(ICatalog catalog);
         void BorrowBook(ICatalog book, IUser user);
         void ReturnBook(ICatalog book, IUser user);
-
+        void TruncateAllData();
     }
 
 }

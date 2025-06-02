@@ -1,12 +1,12 @@
-﻿using BookLibrary.Data;
-using BookLibrary.Data.Interfaces;
+﻿using BookLibrary.Data.Interfaces;
 using BookLibrary.Data.Objects;
 
-namespace BookLibrary.Tests.DataLayerTests
+namespace BookLibrary.Tests.Data
 {
     [TestClass]
-    public class DataLayerTests
+    public class InMemoryDataRepositoryTests
     {
+
         [TestMethod]
         public void AddUser_ShouldAddUser()
         {
@@ -16,18 +16,6 @@ namespace BookLibrary.Tests.DataLayerTests
             repository.AddUser(user);
 
             Assert.IsNotNull(repository.GetUser(user.DNI));
-        }
-
-        [TestMethod]
-        public void AddUser_ShouldThrowInvalidOperationException()
-        {
-            IDataRepository repository = DataLayerFactory.CreateInMemoryDataRepository();
-            IUser user = new User("Juan", "573827384N");
-
-            repository.AddUser(user);
-
-            Assert.ThrowsException<InvalidOperationException>(() => repository.AddUser(user));
-
         }
 
         [TestMethod]

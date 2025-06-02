@@ -1,7 +1,6 @@
-﻿using BookLibrary.Data.Interfaces;
-using BookLibrary.Data.Objects;
+﻿using BookLibrary.Data.Objects;
 
-namespace BookLibrary.Data
+namespace BookLibrary.Data.Interfaces
 {
     public abstract class DataLayerFactory
     {
@@ -13,6 +12,11 @@ namespace BookLibrary.Data
         public static IDataRepository CreateInMemoryDataRepository(IDataRepository dataRepository)
         {
             return new InMemoryDataRepository(dataRepository);
+        }
+
+        public static IDataRepository CreateSQLServerDataRepository(string connection)
+        {
+            return new SQLServerDataRepository(connection);
         }
     }
 }

@@ -7,13 +7,13 @@ namespace BookLibrary.Data.Objects.Events
     {
         public override EventAction Action => EventAction.BorrowBook;
         public Guid BookGuid { get; }
-        public Guid UserGuid { get; }
+        public string DNI { get; }
 
 
-        public EventBorrowBook(Guid bookGuid, Guid userGuid)
+        public EventBorrowBook(Guid bookGuid, string dni)
         {
             BookGuid = bookGuid;
-            UserGuid = userGuid;
+            DNI = dni;
         }
     }
 }

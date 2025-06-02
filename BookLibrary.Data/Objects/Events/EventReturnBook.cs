@@ -6,13 +6,13 @@ namespace BookLibrary.Data.Objects.Events
     {
         public override EventAction Action => EventAction.ReturnBook;
         public Guid BookGuid { get; }
-        public Guid UserGuid { get; }
+        public string DNI { get; }
 
 
-        public EventReturnBook(Guid bookGuid, Guid userGuid)
+        public EventReturnBook(Guid bookGuid, string dni)
         {
             BookGuid = bookGuid;
-            UserGuid = userGuid;
+            DNI = dni;
         }
     }
 }

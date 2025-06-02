@@ -6,4 +6,36 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="netcore-System.Data.Linq" Version="8.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{3259aa49-8aa1-44d3-9025-a0b520596a8c}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="DataBaseCache\ProcessState.designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ProcessState.dbml</DependentUpon>
+    </Compile>
+    <Compile Update="DataBaseCache\ProcessStateContext.designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ProcessStateContext.dbml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="DataBaseCache\ProcessState.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>ProcessState.designer.cs</LastGenOutput>
+    </None>
+    <None Update="DataBaseCache\ProcessStateContext.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>ProcessStateContext.designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
 </Project>

@@ -35,5 +35,20 @@ namespace BookLibrary.Logic.Services
         {
             repository.ReturnBook(book, user);
         }
+
+        public IEnumerable<ICatalog> GetCatalog()
+        {
+            return repository.GetCatalog();
+        }
+
+        public void BorrowBook(ICatalog book, ILogicUser user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ReturnBook(ICatalog book, ILogicUser user)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

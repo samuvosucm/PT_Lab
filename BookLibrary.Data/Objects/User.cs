@@ -4,10 +4,8 @@ namespace BookLibrary.Data.Objects
 {
     internal class User : IUser
     {
-        public Guid Id {  get; set; } = Guid.NewGuid();
-        public string DNI { get; set; }
-        public string Name { get; set; }
-        
+        public string DNI { get;}
+        public string Name { get; }
         public User (string dni, string name) 
         {
             this.Name = name;

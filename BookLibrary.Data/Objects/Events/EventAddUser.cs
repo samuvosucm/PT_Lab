@@ -5,11 +5,11 @@ namespace BookLibrary.Data.Objects.Events
     internal class EventAddUser : Event
     {
         public override EventAction Action => EventAction.AddUser;
-        public Guid UserGuid { get; }
+        public string DNI { get; }
 
-        public EventAddUser(Guid userGuid)
+        public EventAddUser(string dni)
         {
-            UserGuid = userGuid;
+            DNI = dni;
         }
     }
 }

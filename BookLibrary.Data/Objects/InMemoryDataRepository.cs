@@ -50,13 +50,13 @@ namespace BookLibrary.Data.Objects
 
         public void AddUser(IUser user)
         {
-            if (_libraryState.Users.Any(c => c.Id == user.Id))
+            if (_libraryState.Users.Any(c => c.DNI == user.DNI))
             {
-                throw new InvalidOperationException("User already exists.");
+                return;
             }
 
             _libraryState.Users.Add(user);
-            _events.Add(new EventAddUser(user.Id));
+            _events.Add(new EventAddUser(user.DNI));
         }
 
         public void BorrowBook(ICatalog book, IUser user)
@@ -65,13 +65,13 @@ namespace BookLibrary.Data.Objects
             {
                 throw new InvalidOperationException("Book doesn't exist.");
             }
-            if (_libraryState.Users.FirstOrDefault(c => c.Id == user.Id) == null)
+            if (_libraryState.Users.FirstOrDefault(c => c.DNI == user.DNI) == null)
             {
                 throw new InvalidOperationException("User doesn't exist.");
             }
 
             _libraryState.Books.Remove(book);
-            _events.Add(new EventBorrowBook(book.Id, user.Id));
+            _events.Add(new EventBorrowBook(book.Id, user.DNI));
         }
 
         public void RemoveFromCatalog(ICatalog catalog)
@@ -87,13 +87,13 @@ namespace BookLibrary.Data.Objects
 
         public void RemoveUser(IUser user)
         {
-            if (_libraryState.Users.FirstOrDefault(c => c.Id == user.Id) == null)
+            if (_libraryState.Users.FirstOrDefault(c => c.DNI == user.DNI) == null)
             {
                 throw new InvalidOperationException("User doesn't exist.");
             }
 
             _libraryState.Users.Remove(user);
-            _events.Add(new EventRemoveUser(user.Id));
+            _events.Add(new EventRemoveUser(user.DNI));
         }
 
         public void ReturnBook(ICatalog book, IUser user)
@@ -102,13 +102,19 @@ namespace BookLibrary.Data.Objects
             {
                 throw new InvalidOperationException("Book already exists.");
             }
-            if (_libraryState.Users.FirstOrDefault(c => c.Id == user.Id) == null)
+            if (_libraryState.Users.FirstOrDefault(c => c.DNI == user.DNI) == null)
             {
                 throw new InvalidOperationException("User doesn't exist.");
             }
 
             _libraryState.Books.Add(book);
-            _events.Add(new EventReturnBook(book.Id, user.Id));
+            _events.Add(new EventReturnBook(book.Id, user.DNI));
+        }
+
+        public void TruncateAllData()
+        {
+            _libraryState = new ProcessState();
+            _events = new List<IEvent>();
         }
     }
-}
+}   

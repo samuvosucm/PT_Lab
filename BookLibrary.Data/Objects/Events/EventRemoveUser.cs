@@ -10,11 +10,11 @@ namespace BookLibrary.Data.Objects.Events
     internal class EventRemoveUser : Event
     {
         public override EventAction Action => EventAction.RemoveUser;
-        public Guid UserGuid { get; }
+        public string DNI { get; }
 
-        public EventRemoveUser(Guid userGuid)
+        public EventRemoveUser(string dni)
         {
-            UserGuid = userGuid;
+            DNI = dni;
         }
     }
 }
